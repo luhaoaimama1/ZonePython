@@ -14,7 +14,9 @@ import os
 crontabTasks2 = [
     CrontabTask("新任务2", "/Users/fuzhipeng/PycharmProjects/ZonePython/shell/crontab/pythontask2.py ", '* * * * *'),
 ]
-addTask(crontabTasks2)
+addTask(crontabTasks2)  #添加任务
+
+removeTask(crontabTasks2) #为了移除任务
 
 '''
 
@@ -52,7 +54,11 @@ def addTask(crontabTasks):
     if not checkTaskVaild(crontabTasks):
         print("CrontabTask中 任何一个字段不可为空!")
         return
+        __innerRealDealTask(crontabTasks, True)
 
+
+
+def __innerRealDealTask(crontabTasks, isAdd):
     # 创建当前用户的crontab，当然也可以创建其他用户的，但得有足够权限
     my_user_cron = CronTab(user=True)
     # 迭代所有任务
@@ -69,18 +75,24 @@ def addTask(crontabTasks):
                     print("删除重复任务(因为新添加任务有此脚本)\tpath===>{}".format(taskScriptPath))
                     invaildTasks.append(task)
                     break
-
     '''移除无效任务'''
     if len(invaildTasks) != 0:
         for invaildTask in invaildTasks:
             my_user_cron.remove(invaildTask)
         my_user_cron.write()
 
-    '''添加task里的任务'''
-    my_user_cron = CronTab(user=True)
-    for addTask in crontabTasks:
-        newTask = my_user_cron.new(envEncode + envPython3 + python3 + ' ' + addTask.scriptPath)
-        newTask.setall(addTask.crontab)
-        newTask.set_comment(addTask.comment)
-        print("添加任务中脚本===>{}".format(newTask))
+    if isAdd:
+        '''添加task里的任务'''
+        my_user_cron = CronTab(user=True)
+        for addTask in crontabTasks:
+            newTask = my_user_cron.new(envEncode + envPython3 + python3 + ' ' + addTask.scriptPath)
+            newTask.setall(addTask.crontab)
+            newTask.set_comment(addTask.comment)
+            print("添加任务中脚本===>{}".format(newTask))
     my_user_cron.write()  # 最后将crontab写入配置文件
+
+def removeTask(crontabTasks):
+    if not checkTaskVaild(crontabTasks):
+        print("CrontabTask中 任何一个字段不可为空!")
+        return
+    __innerRealDealTask(crontabTasks, False)

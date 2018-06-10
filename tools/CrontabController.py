@@ -6,4 +6,6 @@ from shell.crontab.core.CrontabCore import *
 crontabTasks2 = [
     CrontabTask("新任务2", "/Users/fuzhipeng/PycharmProjects/ZonePython/shell/crontab/pythontask2.py ", '* * * * *'),
 ]
-addTask(crontabTasks2)
+removeTask(crontabTasks2)
+
+# addTask(crontabTasks2)
