@@ -8,8 +8,10 @@ from fold.core.DealFilesByFolder import *;
 根据maps key找到文件前椎名，换成 value的名字
 '''
 #/Users/fuzhipeng/Desktop/新手引导-互推 Asserts
+# /Users/fuzhipeng/AndroidStudioProjects/bililive-android-myfollowing/followingCard/src/main
 maps = {
-    "tips_help_push_people_3": "tips_help_push_people_4",
+    "showmap": "ic_following_lbs_detail_location",
+    "showmap": "ic_following_lbs_detail_location",
 }
 
 '''
