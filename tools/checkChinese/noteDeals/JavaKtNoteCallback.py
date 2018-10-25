@@ -30,7 +30,11 @@ class JavaKtNoteCallback(NoteCallback):
         return ""
 
     def checkNote1Start(self, lineContent):
-        if lineContent.find(self.note1[0]) != -1:
+        findLoction = lineContent.find(self.note1[0])
+        if findLoction != -1:
+            if (lineContent.find(self.note1[1]) > findLoction):
+                self.isNote1 = False
+                return ""
             self.isNote1 = True
             return ""
         else:

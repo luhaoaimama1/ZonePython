@@ -34,7 +34,7 @@ class FileCallback2(FileCallback):
         fileSplitName = os.path.splitext(fileName)
 
         # 核心处理
-        if fileSplitName[1] == "xml":
+        if fileSplitName[1] == ".xml":
             noteDealCallback = XmlNoteCallback()
         else:
             noteDealCallback = JavaKtNoteCallback()
