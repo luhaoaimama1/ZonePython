@@ -1,3 +1,6 @@
+import sys
+sys.path.append("/Users/fuzhipeng/PycharmProjects/ZonePython")
+
 from fold.core.DealFilesByFolder import *
 from fold.string.StringUtils import *
 from tools.checkChinese.noteDeals.XmlNoteCallback import *

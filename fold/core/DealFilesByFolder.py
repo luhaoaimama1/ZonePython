@@ -1,4 +1,4 @@
-import os;
+import os
 
 '''
 使用说明：
