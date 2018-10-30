@@ -1,6 +1,3 @@
-import sys
-sys.path.append("/Users/fuzhipeng/PycharmProjects/ZonePython")
-
 from fold.core.DealFilesByFolder import *
 from fold.string.StringUtils import *
 from tools.checkChinese.noteDeals.XmlNoteCallback import *
@@ -12,21 +9,26 @@ checkFolders：选择要检测的父文件夹
 notCheckFilePathRules：正则过滤掉不想要的文件 通过路径过滤
 '''
 checkFolders = [
-    "/Users/fuzhipeng/Desktop/aaba",
-    "/Users/fuzhipeng/AndroidStudioProjects/ZoneStudio/Android_Zone_Test/src/com/example/mylib_test/activity/checkchinese",
+    "/home/fuzhipeng/AndroidStudioProjects/andruid/app/following/bplusFollowing",
+    "/home/fuzhipeng/AndroidStudioProjects/andruid/app/following/followingCard/src/main/java/com/bilibili/bplus",
 ]
 
 notCheckFilePathRules = [
     ".*res/values.*",
+    ".*/build/.*",
+    ".*.jpg",
+    ".*.png",
 ]
 
 class FilterCallback2(FilterCallback):
     def filter(self, fold, fileName):
         path = os.path.join(fold, fileName)
+        # print(path)
         for rule in notCheckFilePathRules:
             isFound = re.match(rule, path) != None
-            # 找到 true  结果应该返回false
-            return not isFound
+            if isFound:
+                # 找到 true  结果应该返回false
+                return not isFound
         return True
 
 
