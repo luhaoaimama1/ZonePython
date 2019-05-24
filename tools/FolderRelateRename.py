@@ -10,8 +10,7 @@ from fold.core.DealFilesByFolder import *;
 #/Users/fuzhipeng/Desktop/新手引导-互推 Asserts
 # /Users/fuzhipeng/AndroidStudioProjects/bililive-android-myfollowing/followingCard/src/main
 maps = {
-    "showmap": "ic_following_lbs_detail_location",
-    "showmap": "ic_following_lbs_detail_location",
+    "arrowsown": "ic_follow_goods_arrow_down",
 }
 
 '''
