@@ -1,3 +1,4 @@
+# -*- coding: UTF-8 -*-
 from fold.core.DealFilesByFolder import *
 
 '''
@@ -12,10 +13,10 @@ onlyLogNoParseWeb = False
 # webp google工具包 地址
 webpath = "/Users/fuzhipeng/Downloads/libwebp-0.4.1-mac-10.8/bin/cwebp"
 # >400k 就转
-parseFile = 80 * 1024
+parseFile = 80
 path = {
     # "/Users/fuzhipeng/Desktop/webptest",
-    "/Users/fuzhipeng/andruid/app/following/bplusFollowing/src/main/res",
+    "/Users/fuzhipeng/Desktop/原图 2",
 }
 checkRelatePath = [
     "drawable-xxhdpi",

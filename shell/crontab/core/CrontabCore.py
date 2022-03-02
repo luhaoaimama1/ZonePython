@@ -1,3 +1,4 @@
+# -*- coding: UTF-8 -*-
 from crontab import CronTab
 import os
 
