@@ -61,6 +61,6 @@ class FileCallback2(FileCallback):
 if __name__ == '__main__':
     for folder in checkFolders:
         findFileByFold(folder, FilterCallback2(), FileCallback2())
-    result.sort()
+    result.sort()# 排序下
     for it in result:
         print("{0} \n ".format(it))
