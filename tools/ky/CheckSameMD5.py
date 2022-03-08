@@ -6,19 +6,32 @@ notCheckFilePathRules = [
     ".*/build/.*",
     ".*/.cxx/.*",
     ".*/cpp/.*",
+    ".*/.gradle/.*",
+    ".*.gitignore",
     ".*.java",
     ".*.kt",
     ".*.aar",
     ".*.so",
     ".*.class",
+
+    # 重复不会影响 打包出来的东西的大小
+    ".*.proguard-rules.pro",
+    ".*.consumer-rules.pro",
+    ".*.gradle",
+    ".*.colors.xml",
+    # 分析了lib包里面 path="/res/mipmap-xhdpi-v4" 就有一个不会出现多个所以也过滤掉
+    ".*.ic_launcher.*",
+    ".*.styles.xml",
+    ".*./res/values.*",
+    ".*.ky_iconfont.ttf",
+    ".*.specific.ttf",
 ]
-# parseFile = 100 * 1024
 path = {
-    "/Users/fuzhipeng/AndroidStudioProjects/androidv2/ky-app",
-    "/Users/fuzhipeng/AndroidStudioProjects/androidv2/ky-debug",
-    "/Users/fuzhipeng/AndroidStudioProjects/androidv2/ky-dependencies",
-    "/Users/fuzhipeng/AndroidStudioProjects/androidv2/ky-framework",
-    "/Users/fuzhipeng/AndroidStudioProjects/androidv2/ky-third-party",
+    "/Users/fuzhipeng/AndroidStudioProjects/android2/ky-app",
+    "/Users/fuzhipeng/AndroidStudioProjects/android2/ky-debug",
+    "/Users/fuzhipeng/AndroidStudioProjects/android2/ky-dependencies",
+    "/Users/fuzhipeng/AndroidStudioProjects/android2/ky-framework",
+    "/Users/fuzhipeng/AndroidStudioProjects/android2/ky-third-party",
 }
 
 '''
@@ -26,17 +39,17 @@ path = {
 '''
 
 tinydict = {}
-
-
 class FileCallback2(FileCallback):
     def dealFile(self, fold, fileName):
         path = os.path.join(fold, fileName)
         # if os.path.getsize(path) > parseFile:
         md5Str = md5(path)
         if tinydict.has_key(md5Str):
-            print("文件夹{0}------> md5:{1}  相同md5:{2}".format(path, md5Str, tinydict[md5Str]))
+            tinydict[md5Str].append(path)
+            # print("文件夹{0}------> md5:{1}  相同md5:{2}".format(path, md5Str, tinydict[md5Str]))
         else:
-            tinydict[md5Str] = path
+            tinydict[md5Str] = []
+            tinydict[md5Str].append(path)
             # print("文件{0}------>添加_ md5:{1}".format(path, md5Str))
 
         # if tinydict.has_key(md5):
@@ -70,3 +83,11 @@ if __name__ == '__main__':
             findFileByFold(item, FilterCallback2(), FileCallback2())
         else:
             print("path {0}:目录不存在!".format(path))
+
+    print("=====输出=====\n ")
+
+    for it in tinydict.keys():
+        if len(tinydict[it]) > 1 :
+            print("md5:{0} \n ".format(it))
+            for line in tinydict[it]:
+                print("\t {0} \n ".format(line))

@@ -1,14 +1,20 @@
 # -*- coding: UTF-8 -*-
 from fold.core.DealFilesByFolder import *
+
+S = {
+    # "/Users/fuzhipeng/Desktop/webptest",
+    # "/Users/fuzhipeng/Desktop/原图2",
+    # "/Users/fuzhipeng/Desktop/checkNotificationLong/images",
+    # "/Users/fuzhipeng/AndroidStudioProjects/androidv2/ky-app/app/src/main/assets/checkNotificationShort/images",
+    # "/Users/fuzhipeng/Desktop/newCheckNotificationShort/images",
+    "/Users/fuzhipeng/Desktop/newCheckNotificationLong/images",
+}
 '''
 官方文档：https://developers.google.com/speed/webp/download
 '''
 # webp google工具包 地址
 webpath = "/Users/fuzhipeng/Downloads/libwebp-0.4.1-mac-10.82/bin/cwebp"
-path = {
-    # "/Users/fuzhipeng/Desktop/webptest",
-    "/Users/fuzhipeng/Desktop/原图2",
-}
+path = S
 newPathSuffix="_copy"# 压缩后的文件夹后缀名
 compassVar ="-q 100"  # 压缩75
 
